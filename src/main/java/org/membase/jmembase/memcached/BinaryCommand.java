@@ -34,15 +34,19 @@ public class BinaryCommand {
 
     public BinaryCommand(ByteBuffer header) throws IOException {
         header.rewind();
-        if (header.get() != (byte)0x80) {
+
+        byte command = header.get();
+        if (command != (byte)0x80) {
             // create a better one... this is an illegal command
-            throw new IOException();
+            throw new IOException("Illegal command " + command);
         }
         cc = ComCode.valueOf(header.get());
         keylen = header.getShort();
         extlen = header.get();
-        if (header.get() != 0) {
-            throw new IOException(); // illegal datatype
+
+        byte dataType = header.get();
+        if (dataType != 0) {
+            throw new IOException("Illegal datatype " + dataType);
         }
         vbucket = header.getShort();
         bodylen = header.getInt();

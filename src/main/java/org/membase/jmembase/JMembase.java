@@ -269,7 +269,7 @@ public class JMembase implements HttpRequestHandler, Runnable {
         }
 
 	String requestedPath = request.getRequestedUri().getPath();
-        if (requestedPath.equals("/pools/default/bucketsStreaming/default")) {
+        if ("/pools/default/bucketsStreaming/default".equals(requestedPath)) {
             try {
                 // Success
                 request.setReasonCode(HttpReasonCode.OK);
@@ -281,7 +281,7 @@ public class JMembase implements HttpRequestHandler, Runnable {
                 request.resetResponse();
                 request.setReasonCode(HttpReasonCode.Internal_Server_Error);
             }
-        } else if(requestedPath.equals("/pools/default/buckets/default")) {
+        } else if ("/pools/default/buckets/default".equals(requestedPath)) {
             try {
                 // Success
                 request.setReasonCode(HttpReasonCode.OK);
@@ -292,7 +292,7 @@ public class JMembase implements HttpRequestHandler, Runnable {
                 request.resetResponse();
                 request.setReasonCode(HttpReasonCode.Internal_Server_Error);
             }
-        } else if(requestedPath.equals("/pools")) {
+        } else if ("/pools".equals(requestedPath)) {
             try {
                 // Success
                 request.setReasonCode(HttpReasonCode.OK);
